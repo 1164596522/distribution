@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.RouteMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.model.Route">
+    <id column="route_id" jdbcType="INTEGER" property="routeId" />
+    <result column="route_name" jdbcType="VARCHAR" property="routeName" />
+    <result column="start_province_id" jdbcType="INTEGER" property="startProvinceId" />
+    <result column="start_city_id" jdbcType="INTEGER" property="startCityId" />
+    <result column="mid_province_id" jdbcType="INTEGER" property="midProvinceId" />
+    <result column="mid_city_id" jdbcType="INTEGER" property="midCityId" />
+    <result column="end_Province_id" jdbcType="INTEGER" property="endProvinceId" />
+    <result column="end_city_id" jdbcType="INTEGER" property="endCityId" />
+    <result column="transport_price" jdbcType="DOUBLE" property="transportPrice" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from route
+    where route_id = #{routeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.model.Route">
+    insert into route (route_id, route_name, start_province_id, 
+      start_city_id, mid_province_id, mid_city_id, 
+      end_Province_id, end_city_id, transport_price, 
+      remarks)
+    values (#{routeId,jdbcType=INTEGER}, #{routeName,jdbcType=VARCHAR}, #{startProvinceId,jdbcType=INTEGER}, 
+      #{startCityId,jdbcType=INTEGER}, #{midProvinceId,jdbcType=INTEGER}, #{midCityId,jdbcType=INTEGER}, 
+      #{endProvinceId,jdbcType=INTEGER}, #{endCityId,jdbcType=INTEGER}, #{transportPrice,jdbcType=DOUBLE}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.model.Route">
+    update route
+    set route_name = #{routeName,jdbcType=VARCHAR},
+      start_province_id = #{startProvinceId,jdbcType=INTEGER},
+      start_city_id = #{startCityId,jdbcType=INTEGER},
+      mid_province_id = #{midProvinceId,jdbcType=INTEGER},
+      mid_city_id = #{midCityId,jdbcType=INTEGER},
+      end_Province_id = #{endProvinceId,jdbcType=INTEGER},
+      end_city_id = #{endCityId,jdbcType=INTEGER},
+      transport_price = #{transportPrice,jdbcType=DOUBLE},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where route_id = #{routeId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select route_id, route_name, start_province_id, start_city_id, mid_province_id, mid_city_id, 
+    end_Province_id, end_city_id, transport_price, remarks
+    from route
+    where route_id = #{routeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select route_id, route_name, start_province_id, start_city_id, mid_province_id, mid_city_id, 
+    end_Province_id, end_city_id, transport_price, remarks
+    from route
+  </select>
+</mapper>

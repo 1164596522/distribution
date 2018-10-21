@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.DeliveryPlaceMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.model.DeliveryPlace">
+    <id column="dep_id" jdbcType="INTEGER" property="depId" />
+    <result column="dep_name" jdbcType="VARCHAR" property="depName" />
+    <result column="mq_id" jdbcType="INTEGER" property="mqId" />
+    <result column="privance_id" jdbcType="INTEGER" property="privanceId" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="dep_tel" jdbcType="VARCHAR" property="depTel" />
+    <result column="dep_addr" jdbcType="VARCHAR" property="depAddr" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from delivery_place
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.model.DeliveryPlace">
+    insert into delivery_place (dep_id, dep_name, mq_id, 
+      privance_id, city_id, dep_tel, 
+      dep_addr, remarks)
+    values (#{depId,jdbcType=INTEGER}, #{depName,jdbcType=VARCHAR}, #{mqId,jdbcType=INTEGER}, 
+      #{privanceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{depTel,jdbcType=VARCHAR}, 
+      #{depAddr,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.model.DeliveryPlace">
+    update delivery_place
+    set dep_name = #{depName,jdbcType=VARCHAR},
+      mq_id = #{mqId,jdbcType=INTEGER},
+      privance_id = #{privanceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      dep_tel = #{depTel,jdbcType=VARCHAR},
+      dep_addr = #{depAddr,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select dep_id, dep_name, mq_id, privance_id, city_id, dep_tel, dep_addr, remarks
+    from delivery_place
+    where dep_id = #{depId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select dep_id, dep_name, mq_id, privance_id, city_id, dep_tel, dep_addr, remarks
+    from delivery_place
+  </select>
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.SubscribeMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.model.Subscribe">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="delivery_receipt_id" jdbcType="INTEGER" property="deliveryReceiptId" />
+    <result column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="cu_id" jdbcType="INTEGER" property="cuId" />
+    <result column="post_name" jdbcType="VARCHAR" property="postName" />
+    <result column="post_tel" jdbcType="VARCHAR" property="postTel" />
+    <result column="post_addr" jdbcType="VARCHAR" property="postAddr" />
+    <result column="get_name" jdbcType="VARCHAR" property="getName" />
+    <result column="get_tel" jdbcType="VARCHAR" property="getTel" />
+    <result column="get_addr" jdbcType="VARCHAR" property="getAddr" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_weight" jdbcType="DOUBLE" property="goodsWeight" />
+    <result column="order_type" jdbcType="INTEGER" property="orderType" />
+    <result column="order_state" jdbcType="INTEGER" property="orderState" />
+    <result column="transport_price" jdbcType="DOUBLE" property="transportPrice" />
+    <result column="delivery_price" jdbcType="DOUBLE" property="deliveryPrice" />
+    <result column="total_price" jdbcType="DOUBLE" property="totalPrice" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="start_city" jdbcType="VARCHAR" property="startCity" />
+    <result column="end_city" jdbcType="VARCHAR" property="endCity" />
+    <result column="mid_city" jdbcType="VARCHAR" property="midCity" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from subscribe
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.model.Subscribe">
+    insert into subscribe (order_id, delivery_receipt_id, car_id, 
+      cu_id, post_name, post_tel, 
+      post_addr, get_name, get_tel, 
+      get_addr, goods_name, goods_weight, 
+      order_type, order_state, transport_price, 
+      delivery_price, total_price, remarks, 
+      start_city, end_city, mid_city
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{deliveryReceiptId,jdbcType=INTEGER}, #{carId,jdbcType=INTEGER}, 
+      #{cuId,jdbcType=INTEGER}, #{postName,jdbcType=VARCHAR}, #{postTel,jdbcType=VARCHAR}, 
+      #{postAddr,jdbcType=VARCHAR}, #{getName,jdbcType=VARCHAR}, #{getTel,jdbcType=VARCHAR}, 
+      #{getAddr,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsWeight,jdbcType=DOUBLE}, 
+      #{orderType,jdbcType=INTEGER}, #{orderState,jdbcType=INTEGER}, #{transportPrice,jdbcType=DOUBLE}, 
+      #{deliveryPrice,jdbcType=DOUBLE}, #{totalPrice,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}, 
+      #{startCity,jdbcType=VARCHAR}, #{endCity,jdbcType=VARCHAR}, #{midCity,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.model.Subscribe">
+    update subscribe
+    set delivery_receipt_id = #{deliveryReceiptId,jdbcType=INTEGER},
+      car_id = #{carId,jdbcType=INTEGER},
+      cu_id = #{cuId,jdbcType=INTEGER},
+      post_name = #{postName,jdbcType=VARCHAR},
+      post_tel = #{postTel,jdbcType=VARCHAR},
+      post_addr = #{postAddr,jdbcType=VARCHAR},
+      get_name = #{getName,jdbcType=VARCHAR},
+      get_tel = #{getTel,jdbcType=VARCHAR},
+      get_addr = #{getAddr,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_weight = #{goodsWeight,jdbcType=DOUBLE},
+      order_type = #{orderType,jdbcType=INTEGER},
+      order_state = #{orderState,jdbcType=INTEGER},
+      transport_price = #{transportPrice,jdbcType=DOUBLE},
+      delivery_price = #{deliveryPrice,jdbcType=DOUBLE},
+      total_price = #{totalPrice,jdbcType=DOUBLE},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      start_city = #{startCity,jdbcType=VARCHAR},
+      end_city = #{endCity,jdbcType=VARCHAR},
+      mid_city = #{midCity,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select order_id, delivery_receipt_id, car_id, cu_id, post_name, post_tel, post_addr, 
+    get_name, get_tel, get_addr, goods_name, goods_weight, order_type, order_state, transport_price, 
+    delivery_price, total_price, remarks, start_city, end_city, mid_city
+    from subscribe
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select order_id, delivery_receipt_id, car_id, cu_id, post_name, post_tel, post_addr, 
+    get_name, get_tel, get_addr, goods_name, goods_weight, order_type, order_state, transport_price, 
+    delivery_price, total_price, remarks, start_city, end_city, mid_city
+    from subscribe
+  </select>
+</mapper>

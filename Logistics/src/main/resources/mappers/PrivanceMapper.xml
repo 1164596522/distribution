@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.PrivanceMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.model.Privance">
+    <id column="privance_id" jdbcType="INTEGER" property="privanceId" />
+    <result column="privance_name" jdbcType="VARCHAR" property="privanceName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from privance
+    where privance_id = #{privanceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.model.Privance">
+    insert into privance (privance_id, privance_name)
+    values (#{privanceId,jdbcType=INTEGER}, #{privanceName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.model.Privance">
+    update privance
+    set privance_name = #{privanceName,jdbcType=VARCHAR}
+    where privance_id = #{privanceId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select privance_id, privance_name
+    from privance
+    where privance_id = #{privanceId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select privance_id, privance_name
+    from privance
+  </select>
+</mapper>

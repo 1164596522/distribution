@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.ManagerMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.model.Manager">
+    <id column="mq_id" jdbcType="INTEGER" property="mqId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="manager_name" jdbcType="VARCHAR" property="managerName" />
+    <result column="manager_pwd" jdbcType="VARCHAR" property="managerPwd" />
+    <result column="manager_sex" jdbcType="VARCHAR" property="managerSex" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manager
+    where mq_id = #{mqId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.model.Manager">
+    insert into manager (mq_id, role_id, manager_name, 
+      manager_pwd, manager_sex, tel, 
+      address, remarks, state
+      )
+    values (#{mqId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{managerName,jdbcType=VARCHAR}, 
+      #{managerPwd,jdbcType=VARCHAR}, #{managerSex,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.model.Manager">
+    update manager
+    set role_id = #{roleId,jdbcType=INTEGER},
+      manager_name = #{managerName,jdbcType=VARCHAR},
+      manager_pwd = #{managerPwd,jdbcType=VARCHAR},
+      manager_sex = #{managerSex,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER}
+    where mq_id = #{mqId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select mq_id, role_id, manager_name, manager_pwd, manager_sex, tel, address, remarks, 
+    state
+    from manager
+    where mq_id = #{mqId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select mq_id, role_id, manager_name, manager_pwd, manager_sex, tel, address, remarks, 
+    state
+    from manager
+  </select>
+</mapper>

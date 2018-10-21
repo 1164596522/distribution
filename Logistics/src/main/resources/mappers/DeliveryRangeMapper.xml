@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.DeliveryRangeMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.model.DeliveryRange">
+    <id column="range_id" jdbcType="INTEGER" property="rangeId" />
+    <result column="range_name" jdbcType="VARCHAR" property="rangeName" />
+    <result column="dep_id" jdbcType="INTEGER" property="depId" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="delivery_price" jdbcType="DOUBLE" property="deliveryPrice" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from delivery_range
+    where range_id = #{rangeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.model.DeliveryRange">
+    insert into delivery_range (range_id, range_name, dep_id, 
+      area_id, delivery_price, remarks
+      )
+    values (#{rangeId,jdbcType=INTEGER}, #{rangeName,jdbcType=VARCHAR}, #{depId,jdbcType=INTEGER}, 
+      #{areaId,jdbcType=INTEGER}, #{deliveryPrice,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.model.DeliveryRange">
+    update delivery_range
+    set range_name = #{rangeName,jdbcType=VARCHAR},
+      dep_id = #{depId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      delivery_price = #{deliveryPrice,jdbcType=DOUBLE},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where range_id = #{rangeId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select range_id, range_name, dep_id, area_id, delivery_price, remarks
+    from delivery_range
+    where range_id = #{rangeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select range_id, range_name, dep_id, area_id, delivery_price, remarks
+    from delivery_range
+  </select>
+</mapper>

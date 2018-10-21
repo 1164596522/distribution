@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf147.dao.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.nf147.model.Customer">
+    <id column="cu_id" jdbcType="INTEGER" property="cuId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="customer_pwd" jdbcType="VARCHAR" property="customerPwd" />
+    <result column="customer_sex" jdbcType="CHAR" property="customerSex" />
+    <result column="brithday" jdbcType="TIMESTAMP" property="brithday" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer
+    where cu_id = #{cuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nf147.model.Customer">
+    insert into customer (cu_id, role_id, customer_name, 
+      customer_pwd, customer_sex, brithday, 
+      tel, address, remarks
+      )
+    values (#{cuId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, 
+      #{customerPwd,jdbcType=VARCHAR}, #{customerSex,jdbcType=CHAR}, #{brithday,jdbcType=TIMESTAMP}, 
+      #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.nf147.model.Customer">
+    update customer
+    set role_id = #{roleId,jdbcType=INTEGER},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_pwd = #{customerPwd,jdbcType=VARCHAR},
+      customer_sex = #{customerSex,jdbcType=CHAR},
+      brithday = #{brithday,jdbcType=TIMESTAMP},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where cu_id = #{cuId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select cu_id, role_id, customer_name, customer_pwd, customer_sex, brithday, tel, 
+    address, remarks
+    from customer
+    where cu_id = #{cuId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select cu_id, role_id, customer_name, customer_pwd, customer_sex, brithday, tel, 
+    address, remarks
+    from customer
+  </select>
+</mapper>
